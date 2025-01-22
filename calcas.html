@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calças - Loja Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .produtos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%; /* Ajusta a largura da imagem ao tamanho do card */
+            max-height: 150px; /* Define uma altura máxima */
+            object-fit: cover; /* Ajusta o conteúdo da imagem para preencher o espaço */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Loja Online</h1>
+        <nav>
+            <a href="index.php">Página Inicial</a>
+            <a href="produtos.php">Produtos</a>
+            <a href="sobre.php">Sobre</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Calças</h2>
+        <div class="produtos">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_IKKKcFGakWVkUqrqvBACLipVlvMs8JTvgw&s" alt="Calça Jeans Masculina Básica">
+                <h3>Calça Jeans Masculina Básica</h3>
+                <p>R$ 119,90</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="https://images.tcdn.com.br/img/img_prod/311840/calca_adidas_3_listras_7_8_feminina_preta_90668_1_cdc6a89f0d69c15f9beaa7f8260bbf25_20210729032701.jpg" alt="Calça Feminina Clochard">
+                <h3>Calça Feminina Clochard</h3>
+                <p>R$ 139,90</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4-p6-4jaoa-M9_mkxwOfSIMyaFX9-eJrcA&s" alt="Calça Jogger Moletom">
+                <h3>Calça Jogger Moletom</h3>
+                <p>R$ 89,90</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="https://images.tcdn.com.br/img/img_prod/1013519/calca_adidas_widele_verde_mulher_30193_1_3d42081c8dd0b56ef8d1fee0a6456852.jpg" alt="Calça Cargo Masculina">
+                <h3>Calça Cargo Feminina</h3>
+                <p>R$ 159,90</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <img src="https://acdn.mitiendanube.com/stores/001/153/552/products/hr6611_3_apparel_on-model_standard-view_white1-e06cb6817ac60f305616818206263206-640-0.jpg" alt="Calça Nike Sportswear">
+                <h3>Calça Adidas Sportswear</h3>
+                <p>R$ 199,90</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Loja Online</p>
+    </footer>
+</body>
+</html>

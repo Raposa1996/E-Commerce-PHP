@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS principal -->
+
+    <style>
+        /* Estilos Gerais do Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo semitransparente */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+}
+
+.modal-content .close:hover {
+    color: #e74c3c;
+}
+
+/* Botão para abrir o modal */
+.btn-info {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn-info:hover {
+    background-color: #2980b9;
+}
+
+/* Animação para o modal */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.modal {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+    </style>
+</head>
+<body>
+    
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-container">
+            <h1 class="logo">
+                <a href="index.php">🛍️ Loja Online</a>
+            </h1>
+            <nav class="navbar">
+                <a href="index.php" class="nav-link">Início</a>
+                <a href="sobre.html" class="nav-link ">Sobre</a>
+                <a href="produtos.php" class="nav-link">Produtos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Carrossel (opcional) -->
+    <div class="carrossel">
+        <div class="carrossel-slides">
+            <div class="carrossel-slide">
+                <img src="https://via.placeholder.com/1200x400?text=Sobre+Nossa+Loja" alt="Sobre Nossa Loja">
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <section class="sobre-container">
+            <div class="sobre-content container">
+                <h2>Quem Somos</h2>
+                <p>
+                    Nossa loja foi criada com o objetivo de oferecer produtos de alta qualidade e um atendimento diferenciado. 
+                    Acreditamos que a união entre estilo, conforto e praticidade pode proporcionar a melhor experiência de compra.
+                </p>
+                <p>
+                    Trabalhamos com uma ampla variedade de produtos, sempre atentos às tendências do mercado e às necessidades de nossos clientes.
+                </p>
+                <p>
+                    Estamos comprometidos em ser referência no setor e em ajudá-lo a encontrar exatamente o que você procura.
+                </p>
+
+                <!-- Botão para abrir o modal -->
+                <button class="btn-info" onclick="openModal()">Mais Sobre a Loja</button>
+
+                <!-- Modal -->
+                <div class="modal" id="infoModal">
+                    <div class="modal-content">
+                        <button class="close" onclick="closeModal()">X</button>
+                        <h2>Informações Adicionais</h2>
+                        <p>Nosso compromisso vai além de vender produtos. Buscamos sempre oferecer aos nossos clientes uma experiência única de compra, com atendimento personalizado e entrega rápida.</p>
+                        <p>Ficamos felizes em ter você como cliente e estamos sempre prontos para ajudá-lo em suas necessidades.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nossa Loja. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para abrir o modal
+        function openModal() {
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+

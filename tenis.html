@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tênis - Loja Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .produtos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%; /* Ajusta a largura da imagem ao tamanho do card */
+            max-height: 150px; /* Define uma altura máxima */
+            object-fit: cover; /* Ajusta o conteúdo da imagem para preencher o espaço */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Loja Online</h1>
+        <nav>
+            <a href="index.php">Página Inicial</a>
+            <a href="produtos.php">Produtos</a>
+            <a href="sobre.php">Sobre</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Tênis</h2>
+        <div class="produtos">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="https://manualdohomemmoderno.com.br/files/2019/05/tenis-adidas-eqt-conheca-a-historia-e-modelos-de-um-dos-mais-famosos-sneakers-da-marca-tenis-adidas-eqt-conheca-a-historia-e-modelos-de-um-dos-mais-famosos-sneakers-da-marca-4.jpg" alt="Tênis Adidas Runfalcon">
+                <h3>Tênis Adidas Runfalcon</h3>
+                <p>R$ 249,90</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="https://modaze.cdn.magazord.com.br/img/2023/01/produto/21189/lateral-tenis-adidas-preto.jpg?ims=fit-in/580x580/filters:fill(white)" alt="Tênis Nike Revolution">
+                <h3>Tênis Nike Revolution</h3>
+                <p>R$ 299,90</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://images.tcdn.com.br/img/img_prod/1048024/tenis_adidas_gazelle_verde_branco_ig0671_7221_1_6c2a90a6b0c025111fa4795bf30bce9b.jpg" alt="Tênis Asics Gel-Kumo">
+                <h3>Tênis Adidas basico Gel-Kumo</h3>
+                <p>R$ 319,90</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="https://esportelegal.fbitsstatic.net/img/p/tenis-adidas-defiant-speed-masculino-115063/406108-1.jpg?w=800&h=800&v=no-change&qs=ignore" alt="Tênis Vans Ultrarange">
+                <h3>Tênis Adidas Ultrarange</h3>
+                <p>R$ 379,90</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <img src="https://images.tcdn.com.br/img/img_prod/970395/tenis_feminino_casual_grand_court_2_0_cloudfoam_id2994_adidas_onca_6461_1_60d1b978a7de92d6962d3c307e897465.jpg" alt="Tênis New Balance 574">
+                <h3>Tênis Adidas Tradicional Feminino</h3>
+                <p>R$ 449,90</p>
+            </div>
+
+            
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Loja Online</p>
+    </footer>
+</body>
+</html>
