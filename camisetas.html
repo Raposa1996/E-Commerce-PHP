@@ -27,16 +27,27 @@
             text-decoration: none;
         }
 
+        /* Botão do carrinho */
         .cart-button {
-            position: absolute;
+            position: absolute; /* Para posicionamento relativo ao header */
             top: 10px;
-            right: 20px;
-            background-color: #f39c12;
+            right: 20px; /* Distância do canto superior direito */
+            background-color: #f39c12; /* Laranja */
             color: #fff;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 20px; /* Botão arredondado */
             cursor: pointer;
-            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Efeito hover no botão */
+        .cart-button:hover {
+            background-color: #e67e22; /* Laranja mais escuro */
+            transform: scale(1.05); /* Leve aumento ao passar o mouse */
         }
 
         main {
@@ -145,7 +156,9 @@
 <body>
     <header>
         <h1>Loja Online</h1>
-        <button class="cart-button" onclick="openCart()">Carrinho (<span id="cartCount">0</span>)</button>
+        <div>
+            <button class="cart-button" onclick="openCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
+        </div>
         <nav>
             <a href="index.php">Página Inicial</a>
             <a href="produtos.php">Produtos</a>
@@ -158,39 +171,35 @@
         <div class="produtos">
             <!-- Cards -->
             <div class="card">
-                <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg" alt="Camiseta Básica Branca">
+                <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg" alt="Camiseta Básica Preta">
                 <h3>Camiseta Básica Preta</h3>
                 <p>R$ 49,90</p>
                 <button onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
             <div class="card">
-                <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_ess_3_listras_feminina_branca_105309_1_90eb9dbed4eebc67391cc071ab461820.jpg" alt="Camiseta Esportiva Cinza">
+                <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_ess_3_listras_feminina_branca_105309_1_90eb9dbed4eebc67391cc071ab461820.jpg" alt="Camiseta Esportiva Branca">
                 <h3>Camiseta Esportiva Branca</h3>
                 <p>R$ 59,90</p>
                 <button onclick="addToCart('Camiseta Esportiva Branca', 59.90)">Adicionar ao Carrinho</button>
             </div>
-
             <div class="card">
                 <img src="https://artwalk.vtexassets.com/arquivos/ids/546171/IZ247-4-100-1-AW-800X1000.jpg?v=638600414841700000" alt="Camiseta Esportiva Cinza">
                 <h3>Camiseta Esportiva Branca</h3>
                 <p>R$ 59,90</p>
-                <button onclick="addToCart('Camiseta Esportiva Branca', 59.90)">Adicionar ao Carrinho</button>
+                <button onclick="addToCart('Camiseta Esportiva Cinza', 59.90)">Adicionar ao Carrinho</button>
             </div>
-
             <div class="card">
-                <img src="https://static.dafiti.com.br/p/adidas-Originals-Camiseta-adidas-Originals-Regular-3-Stripes-Marrom-0105-29106241-1-zoom.jpg" alt="Camiseta Esportiva Cinza">
-                <h3>Camiseta Esportiva Marron</h3>
+                <img src="https://static.dafiti.com.br/p/adidas-Originals-Camiseta-adidas-Originals-Regular-3-Stripes-Marrom-0105-29106241-1-zoom.jpg" alt="Camiseta Esportiva Marrom">
+                <h3>Camiseta Esportiva Marrom</h3>
                 <p>R$ 59,90</p>
-                <button onclick="addToCart('Camiseta Esportiva Branca', 59.90)">Adicionar ao Carrinho</button>
+                <button onclick="addToCart('Camiseta Esportiva Marrom', 59.90)">Adicionar ao Carrinho</button>
             </div>
             <div class="card">
-                <img src="https://static.allianzparqueshop.com.br/produtos/camiseta-adidas-essentials-3-listras-masculina/28/NQQ-7073-028/NQQ-7073-028_zoom1.jpg?ts=1695421665" alt="Camiseta Básica Branca">
-                <h3>Camiseta Básica Preta</h3>
+                <img src="https://static.allianzparqueshop.com.br/produtos/camiseta-adidas-essentials-3-listras-masculina/28/NQQ-7073-028/NQQ-7073-028_zoom1.jpg?ts=1695421665" alt="Camiseta Básica Preta">
+                <h3>Camiseta Básica Branca</h3>
                 <p>R$ 49,90</p>
                 <button onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
-            
-            <!-- Adicione mais cards conforme necessário -->
         </div>
     </main>
 
@@ -216,42 +225,50 @@
             </table>
             <p id="cartTotal">Total: R$ 0,00</p>
             <button class="btn" onclick="checkout()">Finalizar Compra</button>
+            <button class="btn" style="background-color: #e74c3c;" onclick="clearCart()">Limpar Carrinho</button>
         </div>
     </div>
 
     <script>
         let cart = [];
 
-        function addToCart(item, price) {
-            const existingItem = cart.find(entry => entry.item === item);
-            if (existingItem) {
-                existingItem.quantity++;
-                existingItem.total = existingItem.quantity * existingItem.price;
-            } else {
-                cart.push({ item, price, quantity: 1, total: price });
-            }
-            updateCart();
-        }
+      // Função para adicionar item ao carrinho
+function addToCart(item, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItem = cart.find(entry => entry.item === item);
 
-        function updateCart() {
-            const cartCount = cart.reduce((count, entry) => count + entry.quantity, 0);
-            document.getElementById('cartCount').innerText = cartCount;
+    if (existingItem) {
+        existingItem.quantity++;
+        existingItem.total = existingItem.quantity * existingItem.price;
+    } else {
+        cart.push({ item, price, quantity: 1, total: price });
+    }
 
-            const cartItems = document.getElementById('cartItems');
-            cartItems.innerHTML = cart
-                .map(entry => `
-                    <tr>
-                        <td>${entry.item}</td>
-                        <td>${entry.quantity}</td>
-                        <td>R$ ${entry.price.toFixed(2)}</td>
-                        <td>R$ ${entry.total.toFixed(2)}</td>
-                    </tr>
-                `)
-                .join('');
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
 
-            const total = cart.reduce((sum, entry) => sum + entry.total, 0);
-            document.getElementById('cartTotal').innerText = `Total: R$ ${total.toFixed(2)}`;
-        }
+// Função para atualizar o carrinho
+function updateCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.reduce((count, entry) => count + entry.quantity, 0);
+    document.getElementById('cartCount').innerText = cartCount;
+
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = cart
+        .map(entry => `
+            <tr>
+                <td>${entry.item}</td>
+                <td>${entry.quantity}</td>
+                <td>R$ ${entry.price.toFixed(2)}</td>
+                <td>R$ ${entry.total.toFixed(2)}</td>
+            </tr>
+        `)
+        .join('');
+
+    const total = cart.reduce((sum, entry) => sum + entry.total, 0);
+    document.getElementById('cartTotal').innerText = `Total: R$ ${total.toFixed(2)}`;
+}
 
         function openCart() {
             document.getElementById('cartModal').style.display = 'flex';
@@ -267,6 +284,27 @@
             updateCart();
             closeCart();
         }
+
+        function clearCart() {
+            if (confirm('Você tem certeza de que deseja limpar o carrinho?')) {
+                localStorage.removeItem('cart'); // Remove o carrinho do armazenamento local
+                updateCart(); // Atualiza a exibição do carrinho
+                alert('Carrinho limpo com sucesso!');
+            }
+        }
+    
+        // Atualização da função checkout para limpar o armazenamento local também
+        function checkout() {
+            alert('Compra finalizada com sucesso!');
+            localStorage.removeItem('cart'); // Limpa o carrinho do armazenamento local
+            updateCart();
+            closeCart();
+        }
+    
+        // Atualizar o carrinho ao carregar a página
+        window.onload = function () {
+            updateCart();
+        };
     </script>
 </body>
 </html>

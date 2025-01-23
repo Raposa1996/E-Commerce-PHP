@@ -57,6 +57,85 @@ $conn->close();
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles.css?v=1.0">
 
+    <style>
+        .login-container {
+    
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.login-container .erro {
+    color: #ff4d4d;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-container label {
+    font-weight: bold;
+    color: #333;
+}
+
+.login-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login-container input:focus {
+    border-color: #007bff;
+}
+
+.login-container button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.login-container p {
+    color: #555;
+    font-size: 14px;
+}
+
+.login-container p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
+    </style>
+
+
 </head>
 <body>
 
