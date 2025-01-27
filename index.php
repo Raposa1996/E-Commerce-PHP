@@ -1,16 +1,23 @@
 <?php
 session_start();
 
-// Verificar se o usuário está logado, caso contrário, redirecionar para a página de login
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php'); // Redireciona para login se não estiver logado
-    exit();
-}
-
 // Conectar ao banco de dados
 $conn = new mysqli('localhost', 'root', '', 'ecommerce');
 if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
+}
+
+// Inserir feedback no banco de dados
+if (isset($_POST['enviar_feedback'])) {
+    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $data_hora = date('Y-m-d H:i:s');
+
+    $sql_inserir_feedback = "INSERT INTO feedbacks (comentario, data_hora) VALUES ('$comentario', '$data_hora')";
+    if ($conn->query($sql_inserir_feedback) === TRUE) {
+        echo "<script>alert('Obrigado pelo seu feedback!');</script>";
+    } else {
+        echo "<script>alert('Erro ao enviar feedback. Tente novamente.');</script>";
+    }
 }
 
 // Buscar todos os produtos
@@ -26,7 +33,7 @@ $result = $conn->query($sql);
     <title>Loja Online - Bem-vindo</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos do carrossel */
+        /* Estilos do carrossel principal */
         .carrossel {
             position: relative;
             overflow: hidden;
@@ -62,33 +69,181 @@ $result = $conn->query($sql);
         .carrossel-controle.proximo {
             right: 10px;
         }
+
+        /* Estilos do segundo carrossel */
+        .carrossel-vertical {
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .carrossel-vertical-slides {
+            display: flex;
+            justify-content: space-between;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carrossel-vertical-slide {
+            flex: 1;
+            margin: 0 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .carrossel-vertical-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .carrossel-vertical-controle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .carrossel-vertical-controle.anterior {
+            left: -5%;
+        }
+        .carrossel-vertical-controle.proximo {
+            right: -5%;
+        }
+
+        .feedback-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-section h2,
+.feedback-section h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilização do formulário */
+.feedback-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: 'Arial', sans-serif;
+}
+
+.feedback-section textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: inset 0 4px 8px rgba(0, 123, 255, 0.1);
+}
+
+/* Botão de envio */
+.feedback-section button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    font-family: 'Arial', sans-serif;
+}
+
+.feedback-section button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.feedback-section button:active {
+    background-color: #004085;
+    transform: scale(1);
+}
+
+/* Lista de feedbacks */
+.feedback-list {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.feedback-list p {
+    margin: 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-family: 'Arial', sans-serif;
+}
+
+.feedback-list p:last-child {
+    border-bottom: none;
+}
+
+.feedback-list strong {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .feedback-section {
+        padding: 15px;
+    }
+
+    .feedback-section textarea {
+        font-size: 14px;
+    }
+
+    .feedback-section button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+        
     </style>
 </head>
 <body>
     <!-- Cabeçalho -->
     <header>
-    <div class="header-container">
-        <!-- Logotipo -->
-        <h1 class="logo">
-            <a href="index.php">🛍️ Loja Online</a>
-        </h1>
-        
-        <!-- Barra de Navegação -->
-        <nav class="navbar">
-            <a href="produtos.php" class="nav-link">Produtos</a>
-            <a href="sobre.html" class="nav-link">Sobre</a>
-            <?php if (isset($_SESSION['usuario_id'])): ?>
-                <a href="logout.php" class="nav-link">Logout</a>
-            <?php else: ?>
-                <a href="login.php" class="nav-link">Login</a>
-            <?php endif; ?>
-           
-        </nav>
-    </div>
-</header>
+        <div class="header-container">
+            <h1 class="logo">
+                <a href="index.php">🛍️ Loja Online</a>
+            </h1>
+            <nav class="navbar">
+                <a href="produtos.php" class="nav-link">Produtos</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <a href="logout.php" class="nav-link">Logout</a>
+                <?php else: ?>
+                    <a href="login.php" class="nav-link">Login</a>
+                <?php endif; ?>
+            </nav>
+        </div>
+    </header>
 
-
-    <!-- Seção Principal -->
+    <!-- Carrossel Principal -->
     <main>
         <section class="index-container">
             <div class="carrossel">
@@ -106,53 +261,121 @@ $result = $conn->query($sql);
                 <button class="carrossel-controle anterior">&#10094;</button>
                 <button class="carrossel-controle proximo">&#10095;</button>
             </div>
-
-            <div class="texto-introducao">
-    <div class="baloon">
-        <h2>Sobre Nossa Loja</h2>
-        <p>Bem-vindo à Loja Online! Aqui você encontra uma ampla variedade de produtos de alta qualidade a preços acessíveis.</p>
-        <p>Nossa missão é oferecer a melhor experiência de compras, com atendimento de excelência e entrega rápida.</p>
-    </div>
-</div>
-
-
         </section>
+
+        <!-- Segundo Carrossel -->
+        <section class="carrossel-vertical">
+            <button class="carrossel-vertical-controle anterior">&#10094;</button>
+            <div class="carrossel-vertical-slides">
+                <div class="carrossel-vertical-slide">
+                    <img src="https://i.pinimg.com/564x/a7/2f/4c/a72f4c83fabe74fecc7de00db1773aaf.jpg" alt="Imagem Vertical 1">
+                </div>
+                <div class="carrossel-vertical-slide">"
+                    <img src="https://i.pinimg.com/564x/2d/a0/4d/2da04db548668631acf75b8085a2789f.jpg" alt="Imagem Vertical 2">
+                </div>
+                <div class="carrossel-vertical-slide">
+                    <img src="https://i.pinimg.com/564x/14/d3/26/14d3266bc1d2162fb4225542fce98ef5.jpg" alt="Imagem Vertical 3">
+                </div>
+            </div>
+            <button class="carrossel-vertical-controle proximo">&#10095;</button>
+        </section>
+
+        <section class="feedback-section">
+    <div class="container">
+        <h2>Deixe seu Feedback</h2>
+        <form action="" method="post">
+            <textarea name="comentario" rows="5" placeholder="Escreva seu comentário aqui..." required></textarea>
+            <br>
+            <button type="submit" name="enviar_feedback">Enviar Feedback</button>
+        </form>
+        <hr>
+        <h3>Feedbacks Recentes</h3>
+        <div class="feedback-list">
+            <?php
+            // Buscar feedbacks no banco de dados
+            $sql_feedbacks = "SELECT comentario, data_hora FROM feedbacks ORDER BY data_hora DESC LIMIT 5";
+            $result_feedbacks = $conn->query($sql_feedbacks);
+
+            if ($result_feedbacks->num_rows > 0) {
+                while ($row = $result_feedbacks->fetch_assoc()) {
+                    echo "<p><strong>" . date('d/m/Y H:i', strtotime($row['data_hora'])) . "</strong>: " . htmlspecialchars($row['comentario']) . "</p>";
+                }
+            } else {
+                echo "<p>Sem feedbacks ainda. Seja o primeiro a comentar!</p>";
+            }
+            ?>
+        </div>
+    </div>
+</section>
+
     </main>
 
-    <!-- Rodapé -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Loja Online. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
     <script>
-        const slides = document.querySelector('.carrossel-slides');
-        const slide = document.querySelectorAll('.carrossel-slide');
-        const anterior = document.querySelector('.carrossel-controle.anterior');
-        const proximo = document.querySelector('.carrossel-controle.proximo');
 
-        let indiceAtual = 0;
+        // Lógica para o carrossel principal com rotação automática
+const carrosselSlides = document.querySelector('.carrossel-slides');
+const carrosselSlide = document.querySelectorAll('.carrossel-slide');
+const anterior = document.querySelector('.carrossel-controle.anterior');
+const proximo = document.querySelector('.carrossel-controle.proximo');
 
-        function mostrarSlide(index) {
-            const largura = slide[0].clientWidth;
-            slides.style.transform = `translateX(${-index * largura}px)`;
+let indiceAtual = 0;
+const intervalo = 3000; // Tempo em milissegundos para trocar as imagens (3 segundos)
+
+function mostrarSlide(index) {
+    const largura = carrosselSlide[0].clientWidth;
+    carrosselSlides.style.transform = `translateX(${-index * largura}px)`;
+}
+
+// Funções para avançar e voltar
+function avancarSlide() {
+    indiceAtual = (indiceAtual === carrosselSlide.length - 1) ? 0 : indiceAtual + 1;
+    mostrarSlide(indiceAtual);
+}
+
+function voltarSlide() {
+    indiceAtual = (indiceAtual === 0) ? carrosselSlide.length - 1 : indiceAtual - 1;
+    mostrarSlide(indiceAtual);
+}
+
+// Adicionar eventos nos botões
+anterior.addEventListener('click', voltarSlide);
+proximo.addEventListener('click', avancarSlide);
+
+// Configurar rotação automática
+let intervaloRotacao = setInterval(avancarSlide, intervalo);
+
+// Pausar o carrossel quando o usuário interagir
+document.querySelector('.carrossel').addEventListener('mouseenter', () => {
+    clearInterval(intervaloRotacao); // Para a rotação automática ao passar o mouse
+});
+
+document.querySelector('.carrossel').addEventListener('mouseleave', () => {
+    intervaloRotacao = setInterval(avancarSlide, intervalo); // Retoma a rotação automática ao sair com o mouse
+});
+
+        // Lógica para o segundo carrossel
+        const verticalSlides = document.querySelector('.carrossel-vertical-slides');
+        const verticalSlide = document.querySelectorAll('.carrossel-vertical-slide');
+        const verticalAnterior = document.querySelector('.carrossel-vertical-controle.anterior');
+        const verticalProximo = document.querySelector('.carrossel-vertical-controle.proximo');
+
+        let verticalIndiceAtual = 0;
+
+        function mostrarVerticalSlide(index) {
+            const largura = verticalSlide[0].clientWidth;
+            verticalSlides.style.transform = `translateX(${-index * (largura + 20)}px)`; // 20px é o espaço entre os cards
         }
 
-        anterior.addEventListener('click', () => {
-            indiceAtual = (indiceAtual === 0) ? slide.length - 1 : indiceAtual - 1;
-            mostrarSlide(indiceAtual);
+        verticalAnterior.addEventListener('click', () => {
+            verticalIndiceAtual = (verticalIndiceAtual === 0) ? verticalSlide.length - 1 : verticalIndiceAtual - 1;
+            mostrarVerticalSlide(verticalIndiceAtual);
         });
 
-        proximo.addEventListener('click', () => {
-            indiceAtual = (indiceAtual === slide.length - 1) ? 0 : indiceAtual + 1;
-            mostrarSlide(indiceAtual);
+        verticalProximo.addEventListener('click', () => {
+            verticalIndiceAtual = (verticalIndiceAtual === verticalSlide.length - 1) ? 0 : verticalIndiceAtual + 1;
+            mostrarVerticalSlide(verticalIndiceAtual);
         });
-
-        // Rotação automática (opcional)
-        setInterval(() => {
-            proximo.click();
-        }, 5000); // Troca de slide a cada 5 segundos
     </script>
 </body>
 </html>

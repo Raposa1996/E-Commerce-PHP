@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-/* ESTILOS GERAIS */
 body {
     display: flex;
     justify-content: center;
@@ -17,19 +16,36 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh; /* Garante que o body tenha ao menos o tamanho da tela */
     animation: fadeIn 1s ease-in-out;
+    padding: 20px;
 }
 
-/* ANIMAÇÕES */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
+/* Estilos para telas menores (ex.: smartphones) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Ajusta o tamanho da fonte */
+        padding: 10px; /* Reduz o espaçamento interno */
+        background-size: auto; /* Ajusta a imagem de fundo para telas menores */
     }
 }
+
+/* Estilos para telas ainda menores (ex.: celulares compactos) */
+@media (max-width: 480px) {
+    body {
+        flex-direction: column; /* Mantém o alinhamento */
+        font-size: 12px; /* Ajusta ainda mais o tamanho da fonte */
+    }
+}
+
+/* Estilos para telas maiores (ex.: desktops grandes) */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px; /* Aumenta o tamanho da fonte para telas grandes */
+        padding: 40px; /* Espaçamento maior para desktops */
+    }
+}
+
 
 /* HEADER */
 header {

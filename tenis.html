@@ -184,7 +184,7 @@
         <nav>
             <a href="index.php">Página Inicial</a>
             <a href="produtos.php">Produtos</a>
-            <a href="sobre.php">Sobre</a>
+            <a href="sobre.html">Sobre</a>
         </nav>
         <div>
             <button class="cart-button" onclick="openCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
@@ -244,6 +244,7 @@
         <div class="modal-content">
             <button class="close" onclick="closeCart()">X</button>
             <h2>Seu Carrinho</h2>
+            <p style="color: red; font-weight: bold;">* É necessário fazer login para finalizar a compra na pagina Produtos.</p>
             <table>
                 <thead>
                     <tr>
@@ -256,10 +257,12 @@
                 <tbody id="cartItems"></tbody>
             </table>
             <p id="cartTotal">Total: R$ 0,00</p>
-            <button class="btn" onclick="checkout()">Finalizar Compra</button>
             <button class="btn" style="background-color: #e74c3c;" onclick="clearCart()">Limpar Carrinho</button>
+            <!-- Botão Fazer Login -->
+           
         </div>
     </div>
+    
 
     <script>
         let cart = [];
