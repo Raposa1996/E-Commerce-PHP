@@ -19,7 +19,15 @@ SET time_zone = "+00:00";
 
 --
 -- Banco de dados: `ecommerce`
---
+
+
+--Tabela feedbacks
+
+CREATE TABLE feedbacks (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,
+    comentario TEXT NOT NULL,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 -- --------------------------------------------------------
 
