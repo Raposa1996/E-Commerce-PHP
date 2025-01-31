@@ -30,10 +30,71 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Online - Bem-vindo</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Css/styles.css">
     <style>
         /* Estilos do carrossel principal */
+
+        header nav a {
+    color: #484646;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Efeito ao passar o mouse */
+header nav a:hover {
+    color: #0073e6; /* Azul vibrante */
+    transform: scale(1.1); /* Leve aumento */
+    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+}
+
+/* Adicionando sublinhado animado */
+header nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background: #0073e6;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+/* Exibir sublinhado ao passar o mouse */
+header nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+/* Efeito ao passar o mouse */
+header nav a:hover {
+    color: #0073e6; /* Azul vibrante */
+    transform: scale(1.1); /* Leve aumento */
+    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+}
+
+/* Adicionando sublinhado animado */
+header nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background:rgb(28, 111, 193);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+/* Exibir sublinhado ao passar o mouse */
+header nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
         .carrossel {
             position: relative;
             overflow: hidden;
@@ -122,22 +183,14 @@ $result = $conn->query($sql);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.feedback-section h2,
-.feedback-section h3 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Estilização do formulário */
-.feedback-section form {
+    /* Estilização do formulário */
+    .feedback-section form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.feedback-section textarea {
+    .feedback-section textarea {
     width: 100%;
     padding: 15px;
     border: 1px solid #ccc;
@@ -148,14 +201,14 @@ $result = $conn->query($sql);
     font-family: 'Arial', sans-serif;
 }
 
-.feedback-section textarea:focus {
+    .feedback-section textarea:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: inset 0 4px 8px rgba(0, 123, 255, 0.1);
 }
 
-/* Botão de envio */
-.feedback-section button {
+    /* Botão de envio */
+    .feedback-section button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -168,18 +221,18 @@ $result = $conn->query($sql);
     font-family: 'Arial', sans-serif;
 }
 
-.feedback-section button:hover {
+    .feedback-section button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
 
-.feedback-section button:active {
+    .feedback-section button:active {
     background-color: #004085;
     transform: scale(1);
 }
 
-/* Lista de feedbacks */
-.feedback-list {
+    /* Lista de feedbacks */
+    .feedback-list {
     margin-top: 20px;
     padding: 10px;
     background-color: #fff;
@@ -189,24 +242,24 @@ $result = $conn->query($sql);
     overflow-y: auto;
 }
 
-.feedback-list p {
+    .feedback-list p {
     margin: 10px 0;
     padding: 10px;
     border-bottom: 1px solid #eee;
     font-family: 'Arial', sans-serif;
 }
 
-.feedback-list p:last-child {
+    .feedback-list p:last-child {
     border-bottom: none;
 }
 
-.feedback-list strong {
+    .feedback-list strong {
     color: #007bff;
     font-weight: bold;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
+    /* Responsividade */
+    @media (max-width: 600px) {
     .feedback-section {
         padding: 15px;
     }

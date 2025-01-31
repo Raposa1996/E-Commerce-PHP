@@ -6,12 +6,13 @@
     <title>Tênis - Loja Online</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
+                background-image: url('https://wallpapers.com/images/hd/adidas-brand-logo-with-dwight-howard-wfzegw4mlt852pr6.webp');
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f8f8;
+                color: #333;
+            }
 
         header {
             background-color: #333;
@@ -77,15 +78,6 @@
             color: #f39c12;
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
         .modal {
             display: none; /* Oculto inicialmente */
             position: fixed;
@@ -170,10 +162,37 @@
 }
 
 /* Efeito hover no botão */
-.cart-button:hover {
-    background-color: #e67e22; /* Laranja mais escuro */
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+/* Botão Adicionar ao Carrinho */
+button.add-to-cart {
+    background: linear-gradient(135deg, #1e90ff, #0073e6); /* Degradê azul */
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px; /* Arredondado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
+
+/* Ícone do carrinho */
+button.add-to-cart::before {
+    content: "🛍️"; /* Ícone de sacola */
+    font-size: 1.2em;
+}
+
+/* Efeito hover */
+button.add-to-cart:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #0073e6, #005bb5); /* Azul mais escuro no hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
 
         
     </style>
@@ -182,8 +201,8 @@
     <header>
         <h1>Loja Online</h1>
         <nav>
-            <a href="index.php">Página Inicial</a>
-            <a href="produtos.php">Produtos</a>
+            <a href="../index.php">Página Inicial</a>
+            <a href="../produtos.php">Produtos</a>
             <a href="sobre.html">Sobre</a>
         </nav>
         <div>
@@ -200,7 +219,7 @@
                 <img src="https://manualdohomemmoderno.com.br/files/2019/05/tenis-adidas-eqt-conheca-a-historia-e-modelos-de-um-dos-mais-famosos-sneakers-da-marca-tenis-adidas-eqt-conheca-a-historia-e-modelos-de-um-dos-mais-famosos-sneakers-da-marca-4.jpg" alt="Tênis Adidas Runfalcon">
                 <h3>Tênis Adidas Runfalcon</h3>
                 <p>R$ 299,90</p>
-                <button onclick="addToCart('Tênis Adidas Runfalcon', 59.90)">Adicionar ao Carrinho</button>
+                <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
                 
               
             </div>
@@ -210,7 +229,7 @@
                 <img src="https://modaze.cdn.magazord.com.br/img/2023/01/produto/21189/lateral-tenis-adidas-preto.jpg?ims=fit-in/580x580/filters:fill(white)" alt="Tênis Nike Revolution">
                 <h3>Tênis Adidas Revolution</h3>
                 <p>R$ 299,90</p>
-                <button onclick="addToCart('Tênis Adidas Runfalcon', 59.90)">Adicionar ao Carrinho</button>
+                <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
 
             <!-- Card 3 -->
@@ -218,7 +237,7 @@
                 <img src="https://images.tcdn.com.br/img/img_prod/1048024/tenis_adidas_gazelle_verde_branco_ig0671_7221_1_6c2a90a6b0c025111fa4795bf30bce9b.jpg" alt="Tênis Asics Gel-Kumo">
                 <h3>Tênis Adidas basico Gel-Kumo</h3>
                 <p>R$ 299,90</p>
-                <button onclick="addToCart('Tênis Adidas Runfalcon', 59.90)">Adicionar ao Carrinho</button>
+                <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
 
             <!-- Card 4 -->
@@ -226,7 +245,7 @@
                 <img src="https://esportelegal.fbitsstatic.net/img/p/tenis-adidas-defiant-speed-masculino-115063/406108-1.jpg?w=800&h=800&v=no-change&qs=ignore" alt="Tênis Vans Ultrarange">
                 <h3>Tênis Adidas Ultrarange</h3>
                 <p>R$ 299,90</p>
-                <button onclick="addToCart('Tênis Adidas Runfalcon', 59.90)">Adicionar ao Carrinho</button>
+                <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
 
             <!-- Card 5 -->
@@ -234,7 +253,7 @@
                 <img src="https://images.tcdn.com.br/img/img_prod/970395/tenis_feminino_casual_grand_court_2_0_cloudfoam_id2994_adidas_onca_6461_1_60d1b978a7de92d6962d3c307e897465.jpg" alt="Tênis New Balance 574">
                 <h3>Tênis Adidas Tradicional Feminino</h3>
                 <p>R$ 299,90</p>
-                <button onclick="addToCart('Tênis Adidas Runfalcon', 59.90)">Adicionar ao Carrinho</button>
+                  <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
 
             

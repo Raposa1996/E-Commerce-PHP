@@ -24,7 +24,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Loja Online</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Css/styles.css">
     <style>
         /* Estilos gerais */
         body {
@@ -35,26 +35,53 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
         }
 
         .logo a {
-            color: #fff;
+            color: #826f68;
             text-decoration: none;
             font-size: 24px;
         }
+        
 
-        .navbar .nav-link {
-            margin-right: 15px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
 
-        .navbar .nav-link:hover {
-            text-decoration: underline;
-        }
+        header nav a {
+    color: #484646;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Efeito ao passar o mouse */
+header nav a:hover {
+    color: #0073e6; /* Azul vibrante */
+    transform: scale(1.1); /* Leve aumento */
+    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+}
+
+/* Adicionando sublinhado animado */
+header nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background: #0073e6;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+/* Exibir sublinhado ao passar o mouse */
+header nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
 
         /* Botão do carrinho */
         .cart-button {
-            background-color: #e67e22;
-            color: #fff;
+            background-color: rgba(2, 2, 2, 0.2);
+            color:rgb(255, 254, 253);
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
@@ -63,7 +90,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
         }
 
         .cart-button:hover {
-            background-color: #d35400;
+            background-color:  #826f68;
         }
 
         /* Modal do carrinho */
@@ -236,6 +263,24 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
             border-radius: 5px;
             margin-top: 10px;
         }
+        h3 {
+    color:rgb(216, 217, 219); /* Preto bem escuro */
+    font-size: 1.6em; /* Tamanho maior para destacar */
+    font-weight: bold; /* Deixa o título mais forte */
+    text-transform: uppercase; /* Maiúsculas para mais impacto */
+    letter-spacing: 1px; /* Espaçamento entre letras para sofisticação */
+    text-align: center; /* Centraliza o texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
+    transition: color 0.3s ease, transform 0.3s ease; /* Suavização dos efeitos */
+}
+
+/* Efeito ao passar o mouse */
+h3:hover {
+    color: #0073e6; /* Azul vibrante no hover */
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.4); /* Brilho sutil */
+}
+
     </style>
 </head>
 <body>
@@ -251,7 +296,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
             <nav class="navbar">
                 <a href="index.php" class="nav-link">Inicio</a>
                 <a href="produtos.php" class="nav-link">Produtos</a>
-                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="Telas_html/sobre.html" class="nav-link">Sobre</a>
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <a href="logout.php" class="nav-link">Logout</a>
                 <?php endif; ?>
@@ -270,7 +315,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
         <div class="categorias-container">
             <!-- Categoria: Camisetas -->
             <div class="categoria">
-                <a href="camisetas.html">
+                <a href="Telas_html/camisetas.html">
                     <img src="imagens/imagem9.webp" alt="Camisetas" class="categoria-imagem">
                     <h3>Camisetas</h3>
                 </a>
@@ -278,7 +323,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
 
             <!-- Categoria: Tênis -->
             <div class="categoria">
-                <a href="tenis.html">
+                <a href="Telas_html/tenis.html">
                     <img src="imagens/produto2.jpg" alt="Tênis" class="categoria-imagem">
                     <h3>Tênis</h3>
                 </a>
@@ -286,7 +331,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
 
             <!-- Categoria: Calças -->
             <div class="categoria">
-                <a href="calcas.html">
+                <a href="Telas_html/calcas.html">
                     <img src="imagens/produto5.jpg" alt="Calças" class="categoria-imagem">
                     <h3>Calças</h3>
                 </a>

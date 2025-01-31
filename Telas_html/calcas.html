@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camisetas - Loja Online</title>
+    <title>Calças - Loja Online</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -160,113 +160,84 @@
             <button class="cart-button" onclick="openCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
         </div>
         <nav>
-            <a href="index.php">Página Inicial</a>
-            <a href="produtos.php">Produtos</a>
+            <a href="../index.php">Página Inicial</a>
+            <a href="../produtos.php">Produtos</a>
             <a href="sobre.html">Sobre</a>
         </nav>
     </header>
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <button class="close" onclick="closeCart()">X</button>
+            <h2>Seu Carrinho</h2>
+            <p style="color: red; font-weight: bold;">* É necessário fazer login para finalizar a compra na pagina Produtos.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cartItems"></tbody>
+            </table>
+            <p id="cartTotal">Total: R$ 0,00</p>
+            <button class="btn" style="background-color: #e74c3c;" onclick="clearCart()">Limpar Carrinho</button>
+            <!-- Botão Fazer Login -->
+          
+        </div>
+    </div>
+
+    
+    
 
     <main>
-        <h2>Camisetas</h2>
+        <h2>Calças</h2>
         <div class="produtos">
-            <!-- Cards -->
+            <!-- Card 1 -->
             <div class="card">
-                <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg" alt="Camiseta Básica Preta">
-                <h3>Camiseta Básica Preta</h3>
-                <p>R$ 49,90</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_IKKKcFGakWVkUqrqvBACLipVlvMs8JTvgw&s" alt="Calça Jeans Masculina Básica">
+                <h3>Calça Jeans Masculina Básica</h3>
+                <p>R$ 119,90</p>
                 <button onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
             </div>
+
+            <!-- Card 2 -->
             <div class="card">
-                <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_ess_3_listras_feminina_branca_105309_1_90eb9dbed4eebc67391cc071ab461820.jpg" alt="Camiseta Esportiva Branca">
-                <h3>Camiseta Esportiva Branca</h3>
-                <p>R$ 59,90</p>
-                <button onclick="addToCart('Camiseta Esportiva Branca', 59.90)">Adicionar ao Carrinho</button>
+                <img src="https://images.tcdn.com.br/img/img_prod/311840/calca_adidas_3_listras_7_8_feminina_preta_90668_1_cdc6a89f0d69c15f9beaa7f8260bbf25_20210729032701.jpg" alt="Calça Feminina Clochard">
+                <h3>Calça Feminina Clochard</h3>
+                <p>R$ 139,90</p>
+                <button onclick="addToCart('Calça Feminina Clochard', 49.90)">Adicionar ao Carrinho</button>
             </div>
+
+            <!-- Card 3 -->
             <div class="card">
-                <img src="https://artwalk.vtexassets.com/arquivos/ids/546171/IZ247-4-100-1-AW-800X1000.jpg?v=638600414841700000" alt="Camiseta Esportiva Cinza">
-                <h3>Camiseta Esportiva Branca</h3>
-                <p>R$ 59,90</p>
-                <button onclick="addToCart('Camiseta Esportiva Cinza', 59.90)">Adicionar ao Carrinho</button>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4-p6-4jaoa-M9_mkxwOfSIMyaFX9-eJrcA&s" alt="Calça Jogger Moletom">
+                <h3>Calça Jogger Moletom</h3>
+                <p>R$ 89,90</p>
+                <button onclick="addToCart('Calça Jogger Moletom', 49.90)">Adicionar ao Carrinho</button>
             </div>
+
+            <!-- Card 4 -->
             <div class="card">
-                <img src="https://static.dafiti.com.br/p/adidas-Originals-Camiseta-adidas-Originals-Regular-3-Stripes-Marrom-0105-29106241-1-zoom.jpg" alt="Camiseta Esportiva Marrom">
-                <h3>Camiseta Esportiva Marrom</h3>
-                <p>R$ 59,90</p>
-                <button onclick="addToCart('Camiseta Esportiva Marrom', 59.90)">Adicionar ao Carrinho</button>
+                <img src="https://images.tcdn.com.br/img/img_prod/1013519/calca_adidas_widele_verde_mulher_30193_1_3d42081c8dd0b56ef8d1fee0a6456852.jpg" alt="Calça Cargo Masculina">
+                <h3>Calça Cargo Feminina</h3>
+                <p>R$ 159,90</p>
+                <button onclick="addToCart('Calça Cargo Feminina', 49.90)">Adicionar ao Carrinho</button>
             </div>
+
+            <!-- Card 6 -->
             <div class="card">
-                <img src="https://static.allianzparqueshop.com.br/produtos/camiseta-adidas-essentials-3-listras-masculina/28/NQQ-7073-028/NQQ-7073-028_zoom1.jpg?ts=1695421665" alt="Camiseta Básica Preta">
-                <h3>Camiseta Básica Branca</h3>
-                <p>R$ 49,90</p>
-                <button onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
+                <img src="https://acdn.mitiendanube.com/stores/001/153/552/products/hr6611_3_apparel_on-model_standard-view_white1-e06cb6817ac60f305616818206263206-640-0.jpg" alt="Calça Nike Sportswear">
+                <h3>Calça Adidas Sportswear</h3>
+                <p>R$ 199,90</p>
+                <button onclick="addToCart('Calça Adidas Sportswear', 49.90)">Adicionar ao Carrinho</button>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Loja Online</p>
-    </footer>
-
-<!-- Modal do Carrinho -->
-<div class="modal" id="cartModal">
-    <div class="modal-content">
-        <button class="close" onclick="closeCart()">X</button>
-        <h2>Seu Carrinho</h2>
-        <p style="color: red; font-weight: bold;" id="loginMessage">
-            * É necessário fazer login para finalizar a compra na pagina Produtos.
-        </p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="cartItems"></tbody>
-        </table>
-        <p id="cartTotal">Total: R$ 0,00</p>
-        <button class="btn" style="background-color: #e74c3c;" onclick="clearCart()">Limpar Carrinho</button>
-        <div id="authButtonContainer">
-            <!-- O botão "Fazer Login" ou "Finalizar Compra" será inserido aqui dinamicamente -->
-        </div>
-    </div>
-</div>
-
-
     <script>
-        let isLoggedIn = false; // Altere para true para simular o usuário logado
-
-        // Função para exibir o botão de autenticação
-        function displayAuthButton() {
-            const authButtonContainer = document.getElementById('authButtonContainer');
-            const loginMessage = document.getElementById('loginMessage');
-    
-            if (isLoggedIn) {
-                // Usuário logado: mostrar "Finalizar Compra"
-                loginMessage.style.display = 'none'; // Esconde a mensagem de login
-                authButtonContainer.innerHTML = `
-                    <button class="btn" style="margin-top: 10px; background-color: #27ae60;" onclick="checkout()">
-                        Finalizar Compra
-                    </button>
-                `;
-            } else {
-                // Usuário não logado: mostrar "Fazer Login"
-                loginMessage.style.display = 'block'; // Mostra a mensagem de login
-                authButtonContainer.innerHTML = `
-                    <button class="btn" style="margin-top: 10px; background-color: #3498db;" onclick="window.location.href='login.php'">
-                        Fazer Login
-                    </button>
-                `;
-            }
-        }
-    
-        // Atualizar o carrinho e botão de autenticação ao carregar a página
-        window.onload = function () {
-            updateCart();
-            displayAuthButton();
-        };
+        let cart = [];
 
       // Função para adicionar item ao carrinho
 function addToCart(item, price) {
@@ -341,7 +312,10 @@ function updateCart() {
         window.onload = function () {
             updateCart();
         };
-        
     </script>
+
+    <footer>
+        <p>&copy; 2025 Loja Online</p>
+    </footer>
 </body>
 </html>
