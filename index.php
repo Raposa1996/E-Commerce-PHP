@@ -7,18 +7,25 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
+
 // Inserir feedback no banco de dados
 if (isset($_POST['enviar_feedback'])) {
-    $comentario = $conn->real_escape_string($_POST['comentario']);
+    $comentario = $_POST['comentario'];
     $data_hora = date('Y-m-d H:i:s');
 
-    $sql_inserir_feedback = "INSERT INTO feedbacks (comentario, data_hora) VALUES ('$comentario', '$data_hora')";
-    if ($conn->query($sql_inserir_feedback) === TRUE) {
+    // Usando Prepared Statement para evitar SQL Injection
+    $stmt = $conn->prepare("INSERT INTO feedbacks (comentario, data_hora) VALUES (?, ?)");
+    $stmt->bind_param("ss", $comentario, $data_hora);
+
+    if ($stmt->execute()) {
         echo "<script>alert('Obrigado pelo seu feedback!');</script>";
     } else {
         echo "<script>alert('Erro ao enviar feedback. Tente novamente.');</script>";
     }
+
+    $stmt->close();
 }
+
 
 // Buscar todos os produtos
 $sql = "SELECT * FROM produtos";
@@ -35,72 +42,95 @@ $result = $conn->query($sql);
         /* Estilos do carrossel principal */
 
         header nav a {
-    color: #484646;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
-    position: relative;
-}
+        color: #484646;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 1.4em;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+        position: relative;
+        }
 
-/* Efeito ao passar o mouse */
-header nav a:hover {
-    color: #0073e6; /* Azul vibrante */
-    transform: scale(1.1); /* Leve aumento */
-    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
-}
 
-/* Adicionando sublinhado animado */
-header nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -3px;
-    width: 0;
-    height: 3px;
-    background: #0073e6;
-    transition: width 0.3s ease, left 0.3s ease;
-}
+        h2 {
+        color: rgb(5, 81, 196);
+        font-size: 7.0rem;
+        text-transform: uppercase;
+        transform: scale(1.1); /* Leve aumento */
+        text-shadow: 
+        0 0 20px rgb(5, 81, 196), /* Sombra neon intensa */
+        0 0 30px rgb(0, 115, 230), /* Azul vibrante */
+        0 0 20px rgb(0, 115, 230), /* Azul mais vibrante */   
+        0 0 75px rgb(0, 115, 230); /* Efeito extremo neon */
+         margin-top: 100px; /* Aumente o valor para mais espaçamento */
+        }
 
-/* Exibir sublinhado ao passar o mouse */
-header nav a:hover::after {
-    width: 100%;
-    left: 0;
-}
+        
+        section{
+        margin-top: 20px;
+        }
+
 
 
 /* Efeito ao passar o mouse */
-header nav a:hover {
-    color: #0073e6; /* Azul vibrante */
-    transform: scale(1.1); /* Leve aumento */
-    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
-}
+        header nav a:hover {
+        color: #0073e6; /* Azul vibrante */
+        transform: scale(1.1); /* Leve aumento */
+        text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+        }
 
 /* Adicionando sublinhado animado */
-header nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -3px;
-    width: 0;
-    height: 3px;
-    background:rgb(28, 111, 193);
-    transition: width 0.3s ease, left 0.3s ease;
-}
+        header nav a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -3px;
+        width: 0;
+        height: 3px;
+        background: #0073e6;
+        transition: width 0.3s ease, left 0.3s ease;
+    
+        }
 
 /* Exibir sublinhado ao passar o mouse */
-header nav a:hover::after {
-    width: 100%;
-    left: 0;
-}
+        header nav a:hover::after {
+        width: 100%;
+        left: 0;
+        }
+
+
+/* Efeito ao passar o mouse */
+        header nav a:hover {
+        color: #0073e6; /* Azul vibrante */
+        transform: scale(1.1); /* Leve aumento */
+        text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+        }
+
+/* Adicionando sublinhado animado */
+        header nav a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -3px;
+        width: 0;
+        height: 3px;
+        background:rgb(28, 111, 193);
+        transition: width 0.3s ease, left 0.3s ease;
+        }
+
+/* Exibir sublinhado ao passar o mouse */
+        header nav a:hover::after {
+        width: 100%;
+        left: 0;
+        }
         .carrossel {
             position: relative;
             overflow: hidden;
             width: 150%;
             max-width: 800px;
             margin: 0 auto;
+           
         }
         .carrossel-slides {
             display: flex;
@@ -112,7 +142,8 @@ header nav a:hover::after {
         .carrossel-slide img {
             width: 100%;
             display: block;
-        }
+            max-height: max-content;
+         }
         .carrossel-controle {
             position: absolute;
             top: 50%;
@@ -175,104 +206,105 @@ header nav a:hover::after {
         }
 
         .feedback-section {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+        background-color:rgb(225, 218, 218);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color:rgb(18, 18, 19);
+        }
 
     /* Estilização do formulário */
-    .feedback-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+        .feedback-section form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        }
 
-    .feedback-section textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    resize: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    font-family: 'Arial', sans-serif;
-}
+        .feedback-section textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        resize: none;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        font-family: 'Arial', sans-serif;
+        }
 
-    .feedback-section textarea:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: inset 0 4px 8px rgba(0, 123, 255, 0.1);
-}
+        .feedback-section textarea:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: inset 0 4px 8px rgba(0, 123, 255, 0.1);
+        }
 
     /* Botão de envio */
-    .feedback-section button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    font-family: 'Arial', sans-serif;
-}
+        .feedback-section button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s;
+        font-family: 'Arial', sans-serif;
+        }
 
-    .feedback-section button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
+        .feedback-section button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+        }
 
-    .feedback-section button:active {
-    background-color: #004085;
-    transform: scale(1);
-}
+        .feedback-section button:active {
+        background-color: #004085;
+        transform: scale(1);
+        }
 
     /* Lista de feedbacks */
-    .feedback-list {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
-    overflow-y: auto;
-}
+        .feedback-list {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        }
 
-    .feedback-list p {
-    margin: 10px 0;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    font-family: 'Arial', sans-serif;
-}
+        .feedback-list p {
+        margin: 10px 0;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        font-family: 'Arial', sans-serif;
+        }
 
-    .feedback-list p:last-child {
-    border-bottom: none;
-}
+        .feedback-list p:last-child {
+        border-bottom: none;
+        }
 
-    .feedback-list strong {
-    color: #007bff;
-    font-weight: bold;
-}
+        .feedback-list strong {
+        color: #007bff;
+        font-weight: bold;
+        }
 
     /* Responsividade */
-    @media (max-width: 600px) {
-    .feedback-section {
+        @media (max-width: 600px) {
+        .feedback-section {
         padding: 15px;
-    }
+        }
 
-    .feedback-section textarea {
+        .feedback-section textarea {
         font-size: 14px;
-    }
+        }
 
-    .feedback-section button {
+        .feedback-section button {
         font-size: 14px;
         padding: 10px;
+        }
     }
-}
 
         
     </style>
@@ -295,11 +327,16 @@ header nav a:hover::after {
             </nav>
         </div>
     </header>
-
+    <section>
+    <div>
+    <h2>Bem Vindo !</h2>
+    </div>
+   </section>
     <!-- Carrossel Principal -->
     <main>
-        <section class="index-container">
+        <section class="index-container"> 
             <div class="carrossel">
+
                 <div class="carrossel-slides">
                     <div class="carrossel-slide">
                         <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg?ts=1695153136&ims=544x" alt="Imagem 1">
@@ -335,7 +372,7 @@ header nav a:hover::after {
 
         <section class="feedback-section">
     <div class="container">
-        <h2>Deixe seu Feedback</h2>
+        <h1>Deixe seu Feedback</h1>
         <form action="" method="post">
             <textarea name="comentario" rows="5" placeholder="Escreva seu comentário aqui..." required></textarea>
             <br>
@@ -367,43 +404,43 @@ header nav a:hover::after {
     <script>
 
         // Lógica para o carrossel principal com rotação automática
-const carrosselSlides = document.querySelector('.carrossel-slides');
-const carrosselSlide = document.querySelectorAll('.carrossel-slide');
-const anterior = document.querySelector('.carrossel-controle.anterior');
-const proximo = document.querySelector('.carrossel-controle.proximo');
+    const carrosselSlides = document.querySelector('.carrossel-slides');
+    const carrosselSlide = document.querySelectorAll('.carrossel-slide');
+    const anterior = document.querySelector('.carrossel-controle.anterior');
+    const proximo = document.querySelector('.carrossel-controle.proximo');
 
-let indiceAtual = 0;
-const intervalo = 3000; // Tempo em milissegundos para trocar as imagens (3 segundos)
+    let indiceAtual = 0;
+    const intervalo = 3000; // Tempo em milissegundos para trocar as imagens (3 segundos)
 
-function mostrarSlide(index) {
+    function mostrarSlide(index) {
     const largura = carrosselSlide[0].clientWidth;
     carrosselSlides.style.transform = `translateX(${-index * largura}px)`;
 }
 
 // Funções para avançar e voltar
-function avancarSlide() {
+    function avancarSlide() {
     indiceAtual = (indiceAtual === carrosselSlide.length - 1) ? 0 : indiceAtual + 1;
     mostrarSlide(indiceAtual);
 }
 
-function voltarSlide() {
+    function voltarSlide() {
     indiceAtual = (indiceAtual === 0) ? carrosselSlide.length - 1 : indiceAtual - 1;
     mostrarSlide(indiceAtual);
 }
 
 // Adicionar eventos nos botões
-anterior.addEventListener('click', voltarSlide);
-proximo.addEventListener('click', avancarSlide);
+    anterior.addEventListener('click', voltarSlide);
+    proximo.addEventListener('click', avancarSlide);
 
 // Configurar rotação automática
-let intervaloRotacao = setInterval(avancarSlide, intervalo);
+    let intervaloRotacao = setInterval(avancarSlide, intervalo);
 
 // Pausar o carrossel quando o usuário interagir
-document.querySelector('.carrossel').addEventListener('mouseenter', () => {
+    document.querySelector('.carrossel').addEventListener('mouseenter', () => {
     clearInterval(intervaloRotacao); // Para a rotação automática ao passar o mouse
 });
 
-document.querySelector('.carrossel').addEventListener('mouseleave', () => {
+    document.querySelector('.carrossel').addEventListener('mouseleave', () => {
     intervaloRotacao = setInterval(avancarSlide, intervalo); // Retoma a rotação automática ao sair com o mouse
 });
 

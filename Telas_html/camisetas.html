@@ -23,40 +23,39 @@
             }
 
             header nav a {
-    color: #484646;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
-    position: relative;
-}
+            color: #484646;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+            position: relative;
+            }
 
-/* Efeito ao passar o mouse */
-header nav a:hover {
-    color: #0073e6; /* Azul vibrante */
-    transform: scale(1.1); /* Leve aumento */
-    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
-}
+            /* Efeito ao passar o mouse */
+            header nav a:hover {
+            color: #0073e6; /* Azul vibrante */
+            transform: scale(1.1); /* Leve aumento */
+            text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+            }
 
-    /* Adicionando sublinhado animado */
-    header nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -3px;
-    width: 0;
-    height: 3px;
-    background: #0073e6;
-    transition: width 0.3s ease, left 0.3s ease;
-}
+             header nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background: #0073e6;
+            transition: width 0.3s ease;
+            }
 
-/* Exibir sublinhado ao passar o mouse */
-    header nav a:hover::after {
-    width: 100%;
-    left: 0;
-}
+            header nav a:hover::after {
+            width: 100%; /* A linha cresce ao passar o mouse */
+            }
+
+
 
 
             /* Botão do carrinho */
@@ -179,35 +178,35 @@ header nav a:hover {
             }
             /* Botão Adicionar ao Carrinho */
             /* Botão Adicionar ao Carrinho */
-button.add-to-cart {
-    background: linear-gradient(135deg, #1e90ff, #0073e6); /* Degradê azul */
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 25px; /* Arredondado */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
+            button.add-to-cart {
+            background: linear-gradient(135deg, #1e90ff, #0073e6); /* Degradê azul */
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px; /* Arredondado */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            }
 
-/* Ícone do carrinho */
-button.add-to-cart::before {
-    content: "🛍️"; /* Ícone de sacola */
-    font-size: 1.2em;
-}
+            /* Ícone do carrinho */
+            button.add-to-cart::before {
+            content: "🛍️"; /* Ícone de sacola */
+            font-size: 1.2em;
+            }
 
-/* Efeito hover */
-button.add-to-cart:hover {
-    transform: scale(1.05);
-    background: linear-gradient(135deg, #0073e6, #005bb5); /* Azul mais escuro no hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
+            /* Efeito hover */
+            button.add-to-cart:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #0073e6, #005bb5); /* Azul mais escuro no hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            }
 
 
             
@@ -232,7 +231,7 @@ button.add-to-cart:hover {
                 <!-- Cards -->
                 <div class="card">
                     <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg" alt="Camiseta Básica Preta">
-                    <h3>Camiseta Básica Preta</h3>
+                    <h3>Camiseta Básica Preta Classica </h3>
                     <p>R$ 49,90</p>
                     <button class="add-to-cart" onclick="addToCart('Camiseta Básica Preta', 49.90)">Adicionar ao Carrinho</button>
 

@@ -15,8 +15,13 @@ if ($conn->connect_error) {
 
 // Verificar se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     $senha = $_POST['senha'];
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erro = "E-mail inválido!";
+    }
+    
 
     // Verificar se o e-mail existe
     $sql = "SELECT * FROM usuarios WHERE email = ?";
