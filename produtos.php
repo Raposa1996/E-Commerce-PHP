@@ -145,6 +145,7 @@ header nav a:hover::after {
             border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
+            color: black;
         }
 
         .modal-content th {
