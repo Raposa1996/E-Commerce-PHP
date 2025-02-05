@@ -23,12 +23,14 @@
             }
 
             header nav a {
-            color: #484646;
+            
+            color: whitesmoke;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
             margin: 0 15px;
             text-decoration: none;
             font-size: 1.4em;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
             position: relative;
             }
@@ -55,10 +57,17 @@
             width: 100%; /* A linha cresce ao passar o mouse */
             }
 
+            h2{
+                
+            color: whitesmoke;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
 
 
+            }
 
-            /* Botão do carrinho */
+ /* Botão do carrinho */
+            
             .cart-button {
                 position: absolute; /* Para posicionamento relativo ao header */
                 top: 10px;
@@ -75,7 +84,7 @@
                 transition: background-color 0.3s ease, transform 0.2s ease;
             }
 
-            /* Efeito hover no botão */
+/* Efeito hover no botão */
             .cart-button:hover {
                 background-color:  #826f68; /* Laranja mais escuro */
                 transform: scale(1.05); /* Leve aumento ao passar o mouse */
@@ -118,7 +127,7 @@
             }
 
         
-            /* Modal */
+/* Modal */
             .modal {
                 display: none;
                 position: fixed;
@@ -176,8 +185,8 @@
                 cursor: pointer;
                 border-radius: 5px;
             }
-            /* Botão Adicionar ao Carrinho */
-            /* Botão Adicionar ao Carrinho */
+            
+/* Botão Adicionar ao Carrinho */
             button.add-to-cart {
             background: linear-gradient(135deg, #1e90ff, #0073e6); /* Degradê azul */
             color: white;

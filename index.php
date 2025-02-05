@@ -41,6 +41,10 @@ $result = $conn->query($sql);
     <style>
         /* Estilos do carrossel principal */
 
+        .navbar .nav-link{
+            text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */   
+        }
+
         header nav a {
         color: #484646;
         margin: 0 15px;
@@ -124,12 +128,19 @@ $result = $conn->query($sql);
         width: 100%;
         left: 0;
         }
+        section h1 {
+        color: whitesmoke;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
+        }
+
         .carrossel {
             position: relative;
             overflow: hidden;
             width: 150%;
             max-width: 800px;
             margin: 0 auto;
+            margin-bottom: auto;
            
         }
         .carrossel-slides {
@@ -281,9 +292,7 @@ $result = $conn->query($sql);
         font-family: 'Arial', sans-serif;
         }
 
-        .feedback-list p:last-child {
-        border-bottom: none;
-        }
+       
 
         .feedback-list strong {
         color: #007bff;
@@ -330,28 +339,32 @@ $result = $conn->query($sql);
     <section>
     <div>
     <h2>Bem Vindo !</h2>
+    <h1>Bem Vindo a loja oficial Adidas </h1>
     </div>
    </section>
     <!-- Carrossel Principal -->
     <main>
-        <section class="index-container"> 
-            <div class="carrossel">
-
-                <div class="carrossel-slides">
-                    <div class="carrossel-slide">
-                        <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg?ts=1695153136&ims=544x" alt="Imagem 1">
-                    </div>
-                    <div class="carrossel-slide">
-                        <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_ess_3_listras_feminina_branca_105309_1_90eb9dbed4eebc67391cc071ab461820.jpg" alt="Imagem 2">
-                    </div>
-                    <div class="carrossel-slide">
-                        <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_tiro_24_branca_e_preta_123734_2_afddee1d6e27f6e4ba83f947f07e3a18.jpg" alt="Imagem 3">
-                    </div>
-                </div>
-                <button class="carrossel-controle anterior">&#10094;</button>
-                <button class="carrossel-controle proximo">&#10095;</button>
+    <section class="index-container"> 
+    <div class="carrossel">
+        <div class="carrossel-slides">
+            <div class="carrossel-slide">
+                <img src="https://static.netshoes.com.br/produtos/camiseta-adidas-essentials-big-logo-masculina/26/2FW-4626-026/2FW-4626-026_zoom1.jpg?ts=1695153136&ims=544x" 
+                     alt="Imagem 1" onclick="window.location.href='produtos.php';" style="cursor: pointer;">
             </div>
-        </section>
+            <div class="carrossel-slide">
+                <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_ess_3_listras_feminina_branca_105309_1_90eb9dbed4eebc67391cc071ab461820.jpg" 
+                     alt="Imagem 2" onclick="window.location.href='produtos.php';" style="cursor: pointer;">
+            </div>
+            <div class="carrossel-slide">
+                <img src="https://images.tcdn.com.br/img/img_prod/311840/camiseta_adidas_tiro_24_branca_e_preta_123734_2_afddee1d6e27f6e4ba83f947f07e3a18.jpg" 
+                     alt="Imagem 3" onclick="window.location.href='produtos.php';" style="cursor: pointer;">
+            </div>
+        </div>
+        <button class="carrossel-controle anterior">&#10094;</button>
+        <button class="carrossel-controle proximo">&#10095;</button>
+    </div>
+</section>
+
 
         <!-- Segundo Carrossel -->
         <section class="carrossel-vertical">

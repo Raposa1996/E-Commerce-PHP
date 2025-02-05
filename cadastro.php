@@ -146,10 +146,6 @@ p a {
     text-decoration: none;
 }
 
-p a:hover {
-    text-decoration: underline;
-}
-
 </style>
     
 </head>

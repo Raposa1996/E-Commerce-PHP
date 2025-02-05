@@ -33,6 +33,9 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
             padding: 0;
             box-sizing: border-box;
         }
+        .navbar .nav-link{
+            text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
+        }
 
         .logo a {
             color: #826f68;
@@ -43,40 +46,41 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
 
 
         header nav a {
-    color: #484646;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
-    position: relative;
-}
+        color: #484646;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 1.4em;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease;
+        position: relative;
+        }
 
 /* Efeito ao passar o mouse */
-header nav a:hover {
-    color: #0073e6; /* Azul vibrante */
-    transform: scale(1.1); /* Leve aumento */
-    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
-}
+        header nav a:hover {
+        color: #0073e6; /* Azul vibrante */
+        transform: scale(1.1); /* Leve aumento */
+        text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.5); /* Sombra azul brilhante */
+        }
 
 /* Adicionando sublinhado animado */
-header nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -3px;
-    width: 0;
-    height: 3px;
-    background: #0073e6;
-    transition: width 0.3s ease, left 0.3s ease;
-}
+        header nav a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -3px;
+        width: 0;
+        height: 3px;
+        background: #0073e6;
+        transition: width 0.3s ease, left 0.3s ease;
+        }
 
 /* Exibir sublinhado ao passar o mouse */
-header nav a:hover::after {
-    width: 100%;
-    left: 0;
-}
+        header nav a:hover::after {
+        width: 100%;
+        left: 0;
+        text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
+        }
 
         /* Botão do carrinho */
         .cart-button {
@@ -87,6 +91,7 @@ header nav a:hover::after {
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            
         }
 
         .cart-button:hover {
@@ -265,22 +270,29 @@ header nav a:hover::after {
             margin-top: 10px;
         }
         h3 {
-    color:rgb(216, 217, 219); /* Preto bem escuro */
-    font-size: 1.6em; /* Tamanho maior para destacar */
-    font-weight: bold; /* Deixa o título mais forte */
-    text-transform: uppercase; /* Maiúsculas para mais impacto */
-    letter-spacing: 1px; /* Espaçamento entre letras para sofisticação */
-    text-align: center; /* Centraliza o texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
-    transition: color 0.3s ease, transform 0.3s ease; /* Suavização dos efeitos */
-}
+        color:rgb(216, 217, 219); /* Preto bem escuro */
+        font-size: 1.6em; /* Tamanho maior para destacar */
+        font-weight: bold; /* Deixa o título mais forte */
+        text-transform: uppercase; /* Maiúsculas para mais impacto */
+        letter-spacing: 1px; /* Espaçamento entre letras para sofisticação */
+        text-align: center; /* Centraliza o texto */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
+        transition: color 0.3s ease, transform 0.3s ease; /* Suavização dos efeitos */
+        text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
+        }
 
 /* Efeito ao passar o mouse */
-h3:hover {
-    color: #0073e6; /* Azul vibrante no hover */
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
-    text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.4); /* Brilho sutil */
-}
+        h3:hover {
+        color: #0073e6; /* Azul vibrante no hover */
+        transform: scale(1.05); /* Leve aumento ao passar o mouse */
+        text-shadow: 3px 3px 6px rgba(0, 115, 230, 0.4); /* Brilho sutil */
+        }
+        
+        h2 {
+        color: whitesmoke;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px #004085; /* Aplica sombra azul escura */
+        }
 
     </style>
 </head>
@@ -319,7 +331,7 @@ h3:hover {
                 <a href="Telas_html/camisetas.html">
                     <img src="imagens/imagem9.webp" alt="Camisetas" class="categoria-imagem">
                     <h3>Camisetas</h3>
-                </a>
+                </>
             </div>
 
             <!-- Categoria: Tênis -->
