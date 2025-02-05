@@ -331,7 +331,7 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
                 <a href="Telas_html/camisetas.html">
                     <img src="imagens/imagem9.webp" alt="Camisetas" class="categoria-imagem">
                     <h3>Camisetas</h3>
-                </>
+                </a>
             </div>
 
             <!-- Categoria: Tênis -->
@@ -435,16 +435,60 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
         }
 
         // Função para checkout
-        function checkout() {
-            if (!<?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>) {
-                openLoginModal();
-            } else {
-                alert('Compra finalizada com sucesso!');
-                localStorage.removeItem('cart');
-                updateCart();
-                closeCart();
-            }
+     // Função de checkout
+     function checkout() {
+    // Verifica se o usuário está logado (deve ser passado via PHP para evitar cache)
+    let usuarioLogado = <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+
+    if (!usuarioLogado) {
+        openLoginModal();
+        return;
+    }
+
+    // Obtém os dados do carrinho
+   // Obtém o carrinho do localStorage e garante que seja um array válido
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Calcula o total da compra garantindo conversão correta dos valores
+const total = cart.reduce((sum, entry) => sum + (parseFloat(entry.total) || 0), 0);
+
+// Criar o objeto para envio à API
+const paymentData = {
+    totalAmount: total.toFixed(2), // Garante que o total tenha 2 casas decimais
+    items: cart.map(item => ({
+        name: item.item,
+        quantity: item.quantity,
+        price: (parseFloat(item.price) || 0).toFixed(2), // Converte e garante 2 casas decimais
+        total: (parseFloat(item.total) || 0).toFixed(2)  // Converte e garante 2 casas decimais
+    }))
+};
+
+// Verifica se os dados foram gerados corretamente
+console.log('Dados do pagamento:', paymentData);
+
+    // Enviar os dados para a API via Backend (Protege a Chave da API)
+    fetch('processar_pagamento.php', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Pagamento realizado com sucesso') {
+            
+        } else {
+            alert('Erro ao iniciar o pagamento. Tente novamente!');
         }
+    })
+    .catch(error => {
+        console.error('Erro ao processar o pagamento:', error);
+        alert('Erro ao processar o pagamento. Tente novamente mais tarde.');
+    });
+}
+
+
 
         // Função para limpar o carrinho
         function clearCart() {

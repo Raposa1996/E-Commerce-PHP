@@ -40,7 +40,12 @@ session_start();
     </table>
 
     <p>Total: R$ <?php echo number_format($totalGeral, 2, ',', '.'); ?></p>
-    <a href="finalizar_compra.php">Finalizar Compra</a>
+
+    <form action="processar_pagamento.php" method="post">
+        <input type="hidden" name="total" value="<?php echo $totalGeral; ?>">
+        <input type="submit" value="Finalizar Compra">
+    </form>
+
 <?php else: ?>
     <p>Seu carrinho está vazio.</p>
 <?php endif; ?>
