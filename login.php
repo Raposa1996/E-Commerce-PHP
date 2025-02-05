@@ -63,17 +63,21 @@ $conn->close();
     <link rel="stylesheet" href="styles.css?v=1.0">
 
     <style>
-        .login-container {
-    
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
+header h1{
+    color: #007BFF;
     text-align: center;
-    margin-top: 100px;
-}
+    margin-top: 140px;
+    text-shadow: 0 0 5px #007BFF, 0 0 10px #00a2ff, 0 0 15px #00c3ff;
+        }
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo levemente transparente */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px); /* Aplica desfoque */
+    -webkit-backdrop-filter: blur(8px); /* Compatibilidade com navegadores */}
 
 .login-container .erro {
     color: #ff4d4d;
@@ -138,6 +142,13 @@ $conn->close();
 .login-container p a:hover {
     text-decoration: underline;
 }
+p{
+    color: #007BFF;
+    font-weight: bold;
+
+
+        }
+
     </style>
 
 

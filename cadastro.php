@@ -61,6 +61,97 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="Css/styles.css">
+    <style>
+    /* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header h1 {
+    color: #007BFF;
+    text-align: center;
+    margin-top: 100px;
+    text-shadow: 0 0 5px #007BFF, 0 0 10px #00a2ff, 0 0 15px #00c3ff;
+}
+
+
+/* Estilizando o container */
+.cadastro-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo levemente transparente */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px); /* Aplica desfoque */
+    -webkit-backdrop-filter: blur(8px); /* Compatibilidade com navegadores */
+}
+
+
+/* Estilizando o erro */
+.erro {
+    color: #ff4d4d;
+    background-color: #ffe6e6;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ff4d4d;
+    border-radius: 4px;
+}
+
+/* Estilizando os labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Estilizando os inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilizando o botão */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilizando o link de login */
+p {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+p a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+</style>
+    
 </head>
 <body>
 
