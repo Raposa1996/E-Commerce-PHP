@@ -434,10 +434,9 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
             document.getElementById('cartModal').style.display = 'none';
         }
 
-        // Função para checkout
+      
      // Função de checkout
      function checkout() {
-    // Verifica se o usuário está logado (deve ser passado via PHP para evitar cache)
     let usuarioLogado = <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
 
     if (!usuarioLogado) {
@@ -445,47 +444,45 @@ $cartCount = getCartCount(); // Obtém a quantidade de itens no carrinho
         return;
     }
 
-    // Obtém os dados do carrinho
-   // Obtém o carrinho do localStorage e garante que seja um array válido
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const total = cart.reduce((sum, entry) => sum + (parseFloat(entry.total) || 0), 0);
 
-// Calcula o total da compra garantindo conversão correta dos valores
-const total = cart.reduce((sum, entry) => sum + (parseFloat(entry.total) || 0), 0);
+    const paymentData = {
+        totalAmount: total.toFixed(2),
+        items: cart.map(item => ({
+            name: item.item,
+            quantity: item.quantity,
+            price: (parseFloat(item.price) || 0).toFixed(2),
+            total: (parseFloat(item.total) || 0).toFixed(2)
+        }))
+    };
 
-// Criar o objeto para envio à API
-const paymentData = {
-    totalAmount: total.toFixed(2), // Garante que o total tenha 2 casas decimais
-    items: cart.map(item => ({
-        name: item.item,
-        quantity: item.quantity,
-        price: (parseFloat(item.price) || 0).toFixed(2), // Converte e garante 2 casas decimais
-        total: (parseFloat(item.total) || 0).toFixed(2)  // Converte e garante 2 casas decimais
-    }))
-};
-
-// Verifica se os dados foram gerados corretamente
-console.log('Dados do pagamento:', paymentData);
-
-    // Enviar os dados para a API via Backend (Protege a Chave da API)
-    fetch('processar_pagamento.php', { 
+    fetch('processar_pagamento.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
         body: JSON.stringify(paymentData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na resposta da rede');
+        }
+        return response.json();
+    })
     .then(data => {
-        if (data.status === 'Pagamento realizado com sucesso') {
-            
+        if (data.status === 'success' && data.paymentLink) {
+            window.location.href = data.paymentLink;
         } else {
-            alert('Erro ao iniciar o pagamento. Tente novamente!');
+            throw new Error(data.mensagem || 'Erro ao processar pagamento');
         }
     })
     .catch(error => {
-        console.error('Erro ao processar o pagamento:', error);
-        alert('Erro ao processar o pagamento. Tente novamente mais tarde.');
-    });
+    console.error('Error:', error);
+    alert('Erro ao processar o pagamento: ' + error.message);
+});
+
 }
 
 
